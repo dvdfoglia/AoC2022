@@ -10,6 +10,7 @@ def read_input():
     return i
 elf=0
 tot_cal=[0]
+tot_cal3=0
 data=read_input()
 for t in data:
     #print(elf)
@@ -20,4 +21,9 @@ for t in data:
         cal=int(t)
         tot_cal[elf]=tot_cal[elf]+cal
 
-print(max(tot_cal))
+print("Top1 sum ",max(tot_cal))
+
+tot_cal.sort(reverse=True)
+for i in range(0,3):
+    tot_cal3=tot_cal3+tot_cal[i]
+print("Top3 Sum ",tot_cal3)
