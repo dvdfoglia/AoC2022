@@ -18,6 +18,10 @@ class draw2:
     r2="X"
     p2="Y"
     s2="Z"
+class draw3:
+    p2_loose="X"
+    p2_draw="Y"
+    p2_win="Z"
 
 
 def read_input():
@@ -26,7 +30,7 @@ def read_input():
     i = input.read().splitlines()
     input.close()
     return i
-def def_win(x,y):
+def rule1(x,y):
     match x:
         case draw1.r1:
             match y:
@@ -42,7 +46,7 @@ def def_win(x,y):
                     return rock
                 case draw2.p2:
                     return paper+draw
-                case s2:
+                case draw2.s2:
                     return scissors+win
         case draw1.s1:
             match y:
@@ -53,10 +57,45 @@ def def_win(x,y):
                 case draw2.s2:
                     return scissors+draw
 
+def rule2(x,y):
+    match x:
+        case draw1.r1:
+            match y:
+                case draw3.p2_draw:
+                    return rock+draw
+                case draw3.p2_win:
+                    return paper+win
+                case draw3.p2_loose:
+                    return scissors
+        case draw1.p1:
+            match y:
+                case draw3.p2_loose:
+                    return rock
+                case draw3.p2_draw:
+                    return paper+draw
+                case draw3.p2_win:
+                    return scissors+win
+        case draw1.s1:
+            match y:
+                case draw3.p2_win:
+                    return rock+win
+                case draw3.p2_loose:
+                    return paper
+                case draw3.p2_draw:
+                    return scissors+draw
+
+
 data=read_input()
 
 for i in data:
     play=i.split()
-    p2_points=p2_points+def_win(play[0],play[1])
+    p2_points=p2_points+rule1(play[0],play[1])
+
+print(p2_points)
+p2_points=0
+
+for i in data:
+    play=i.split()
+    p2_points=p2_points+rule2(play[0],play[1])
 
 print(p2_points)
