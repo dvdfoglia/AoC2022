@@ -11,7 +11,6 @@ def read_input():
     i = input.read().splitlines()
     input.close()
     return i
-
 data=read_input()
 
 for i in data:
@@ -29,7 +28,6 @@ for i in data:
                     break
         else:
             break
-print(priority)
 
 #part2
 group_elves=[]
@@ -60,4 +58,5 @@ for i in data:
         group_elves=[]
         c=0
 
+print(priority)
 print(badge_sum)
