@@ -9,7 +9,7 @@ def read_input():
     input.close()
     return i
 
-def overlap_all(data):
+def solve(data):
     t1=0
     t2=0
     t3=len(data)
@@ -27,6 +27,6 @@ def overlap_all(data):
     return t1,t2,t3
 
 
-res=overlap_all(read_input())
+res=solve(read_input())
 print(res[0])
 print(res[2]-res[1])
