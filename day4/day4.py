@@ -16,8 +16,10 @@ def solve(data):
 
     for i in data:
         g=(list(map(int,i.replace("-",",").split(sep=","))))
+        #range fully contain the other
         if (g[0] <= g[2] and g[1] >= g[3]) or (g[2] <= g[0]) and (g[3] >= g[1]):
             t1+=1
+        #no overlaps
         if (g[0]>g[2]):
             if (g[0]>g[3]):
                 t2+=1
