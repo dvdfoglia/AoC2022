@@ -30,3 +30,34 @@ for i in data:
         else:
             break
 print(priority)
+
+#part2
+group_elves=[]
+c=0
+badge_sum=0
+
+for i in data:
+    b=True
+    group_elves.append(i)
+    c=c+1
+    if c==3:
+        for item1 in wrap(group_elves[0],1):
+            if b:
+                for item2 in wrap(group_elves[1],1):
+                    if item1==item2:
+                        if b:
+                            for item3 in wrap(group_elves[2],1):
+                                if item1==item3:
+                                    if ord(item1)-96>0:
+                                        badge_sum=badge_sum+ord(item1)-96
+                                    else:
+                                        badge_sum=badge_sum+ord(item1)-38
+                                    b=False
+                                    break
+            else:
+                break
+
+        group_elves=[]
+        c=0
+
+print(badge_sum)
