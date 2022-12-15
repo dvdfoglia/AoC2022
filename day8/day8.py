@@ -1,11 +1,12 @@
 import os
-d="test"
+d="day8"
 dname = os.path.dirname(os.path.abspath(__file__))
 data=[]
 max={}
 maxR={}
 res={}
 visible=0
+maxScore=0
 
 def read_input():
     f = dname+"/"+d+".txt"
@@ -67,6 +68,9 @@ for k, v in res.items():
 print("Part1", visible)
 
 data=[]
+
+#Part 2
+
 #Create nested array
 for i in read_input():
     data.append([int(x) for x in [*i.rstrip()]])
@@ -77,6 +81,7 @@ endX=len(data[0])
 endY=len(data)
 res={}
 
+#Calc score
 for y in data:
     cX=0
     for x in y:
@@ -85,25 +90,26 @@ for y in data:
         res[pos]={"scoreR" : 0, "scoreD" : 0, "scoreL" : 0 , "scoreU" : 0}
         for z in range(cX+1,endX): 
             if x > data[cY][z]: res[pos]["scoreR"]+=1
-            elif x == data[cY][z]: res[pos]["scoreR"]+=1; break
+            elif x <= data[cY][z]: res[pos]["scoreR"]+=1; break
             else: break
         for z in range(cY+1,endY): 
             if x > data[z][cX]: res[pos]["scoreD"]+=1
-            elif x == data[z][cX]: res[pos]["scoreD"]+=1; break
+            elif x <= data[z][cX]: res[pos]["scoreD"]+=1; break
             else: break
         for z in range(cX-1,-1,-1): 
             if x > data[cY][z]: res[pos]["scoreL"]+=1
-            elif x == data[cY][z]: res[pos]["scoreL"]+=1; break
-                print(data[cY][z])
+            elif x <= data[cY][z]: res[pos]["scoreL"]+=1; break
             else: break
-        print("Left")
         for z in range(cY-1,-1,-1):
-            if x >= data[z][cX]:
-                res[pos]["scoreU"]+=1
-                print(data[z][cX])
+            if x > data[z][cX]: res[pos]["scoreU"]+=1
+            elif x <= data[z][cX]: res[pos]["scoreU"]+=1; break
             else: break
-        print("Up")
         cX+=1
     cY+=1
 
-print(res)
+#Calc tot score
+for k, v in res.items():
+    if v["scoreR"]*v["scoreD"]*v["scoreL"]*v["scoreU"] > maxScore:
+        maxScore = v["scoreR"]*v["scoreD"]*v["scoreL"]*v["scoreU"]
+
+print("Part2", maxScore)
