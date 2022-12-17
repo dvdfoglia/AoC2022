@@ -52,4 +52,5 @@ for i in load_data():
 print("Part1", res)
 
 
-print("\nPart2 \n", draw)
+print("\nPart2\n")
+print(draw)
